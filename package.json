@@ -1,6 +1,8 @@
 {
-  "name": "currency-converter",
+  "name": "piggicoin",
   "private": true,
+  "description": "A simple and minimalistic currency converter",
+  "author": "Paku",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
