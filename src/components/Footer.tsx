@@ -12,9 +12,14 @@ export default function Footer() {
 
   const [usdAmount, setUsdAmount] = useState('1')
 
-  // Solo permitir valores mayores a 0
+  // Solo permitir valores numéricos y punto decimal
   const handleUsdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value
+    let val = e.target.value.replace(/[^0-9.]/g, '')
+    // Evitar más de un punto decimal
+    const parts = val.split('.')
+    if (parts.length > 2) {
+      val = parts[0] + '.' + parts.slice(1).join('')
+    }
     if (val === '' || Number(val) <= 0) {
       setUsdAmount('1')
     } else {
@@ -59,7 +64,7 @@ export default function Footer() {
           </label>
           <input
             id='usd-amount'
-            type='number'
+            type='text'
             min='1'
             step='any'
             value={usdAmount}
@@ -71,7 +76,7 @@ export default function Footer() {
               appearance: 'textfield',
             }}
             inputMode='decimal'
-            pattern='[0-9]*'
+            pattern='[0-9.]*'
           />
         </div>
         {error ? (
