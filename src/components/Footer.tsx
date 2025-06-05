@@ -55,11 +55,16 @@ export default function Footer() {
   }
 
   return (
-    <footer className='w-full mt-12 flex flex-col items-center gap-2 py-6'>
+    <footer className='w-full  mt-12 flex flex-col items-center gap-2 py-6'>
       <div className='flex items-center gap-2 flex-col text-zinc-200 '>
-        <span className='text-zinc-300 font-bold text-lg'>Dólar Oficial</span>
+        <span className=' text-black dark:text-zinc-300 font-bold text-lg'>
+          Dólar Oficial
+        </span>
         <div className='flex items-center gap-2 mt-2'>
-          <label htmlFor='usd-amount' className='text-zinc-400 text-sm'>
+          <label
+            htmlFor='usd-amount'
+            className='text-black dark:text-zinc-400 text-sm'
+          >
             USD:
           </label>
           <input
@@ -69,7 +74,7 @@ export default function Footer() {
             step='any'
             value={usdAmount}
             onChange={handleUsdChange}
-            className='w-20 px-3 py-2 rounded-md bg-zinc-900 text-zinc-100 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 text-right transition-all placeholder-zinc-400'
+            className='w-20 px-3 py-2 rounded-md  bg-zinc-900 text-zinc-100 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 text-right transition-all placeholder-zinc-400'
             style={{
               fontSize: '1.1rem',
               fontWeight: 500,
@@ -80,26 +85,34 @@ export default function Footer() {
           />
         </div>
         {error ? (
-          <span className='text-zinc-400'>
+          <span className='text-black dark:text-zinc-400'>
             No se pudo obtener el valor actual
           </span>
         ) : !compra || !venta ? (
-          <span className='text-zinc-500'>Cargando...</span>
+          <span className='text-black dark:text-zinc-500'>Cargando...</span>
         ) : (
           <span className='font-semibold text-white flex gap-4'>
             <span>
-              Compra <span className='text-zinc-300'>${compraTotal}</span>
+              Compra{' '}
+              <span className='text-black dark:text-zinc-300'>
+                ${compraTotal}
+              </span>
             </span>
             <span>
-              Venta <span className='text-zinc-300'>${ventaTotal}</span>
+              Venta{' '}
+              <span className='text-black dark:text-zinc-300'>
+                ${ventaTotal}
+              </span>
             </span>
           </span>
         )}
       </div>
       {promedio && (
-        <div className=' text-zinc-400 mt-1'>
+        <div className=' text-black dark:text-zinc-400 mt-1'>
           Promedio:{' '}
-          <span className='font-semibold text-white'>${promedioTotal}</span>
+          <span className='font-semibold text-black dark:text-white'>
+            ${promedioTotal}
+          </span>
         </div>
       )}
     </footer>

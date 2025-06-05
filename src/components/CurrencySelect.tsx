@@ -23,7 +23,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({
       <select
         value={value}
         onChange={handleChange}
-        className='w-full appearance-none bg-white border border-gray-200 rounded-lg py-3 pl-4 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 cursor-pointer'
+        className='w-full appearance-none  bg-white border border-gray-200 rounded-lg py-3 pl-4 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 cursor-pointer'
       >
         {Object.values(currencies)
           .filter((currency) => currency.code !== excludeCurrency)

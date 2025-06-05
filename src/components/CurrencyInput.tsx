@@ -38,12 +38,12 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   }
 
   return (
-    <div className='relative'>
-      <div className='absolute left-0 top-0 h-full flex justify-center items-center pl-3 gap-2'>
+    <div className='relative '>
+      <div className='absolute left-0 top-0 h-full  flex justify-center items-center pl-3 gap-2'>
         {Object.entries(currencies).map(([code, { name }]) => (
           <label
             key={code}
-            className={`flex items-center space-x-1 cursor-pointer duration-200 justify-center select-none ${
+            className={`flex items-center  space-x-1 cursor-pointer duration-200 justify-center select-none ${
               code === otherCurrency
                 ? 'duration-200 opacity-30 scale-90 cursor-not-allowed'
                 : ''
@@ -62,7 +62,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
               className={`
                 w-4 h-4 rounded-full border-2
                 duration-300 
-                border-zinc-400 dark:border-zinc-500 
+                border-zinc-400  dark:border-zinc-500 
                 flex items-center justify-center
                 transition-colors
                 peer-checked:bg-zinc-700 peer-checked:border-zinc-700
@@ -78,7 +78,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
                 `}
               ></span>
             </span>
-            <span className='text-xs font-medium text-zinc-700 dark:text-zinc-200'>
+            <span className='text-xs  font-medium text-zinc-700 dark:text-zinc-200'>
               {code}
             </span>
           </label>

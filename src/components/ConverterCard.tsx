@@ -75,7 +75,7 @@ const ConverterCard: React.FC = () => {
           onCurrencyChange={setFromCurrency}
           otherCurrency={toCurrency}
           // Mejorar el estilo del input desde aquí
-          inputClassName='!bg-zinc-50 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-2xl !font-semibold !py-4 !pl-36 !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
+          inputClassName='!bg-zinc-50 !bg-gray-100 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-2xl !font-semibold !py-4 !pl-36  !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
         />
 
         <div className='flex justify-center'>
