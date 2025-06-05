@@ -24,9 +24,7 @@ function App() {
           />
         </div>
         <ConverterCard />
-        <p className='mt-8 text-sm text-zinc-500 dark:text-zinc-400 text-center'>
-          Exchange rates are updated in real-time from official sources
-        </p>
+
         <Footer />
       </div>
     </div>

@@ -20,8 +20,11 @@ export default function Footer() {
     if (parts.length > 2) {
       val = parts[0] + '.' + parts.slice(1).join('')
     }
-    if (val === '' || Number(val) <= 0) {
-      setUsdAmount('1')
+    // Permitir vacío
+    if (val === '') {
+      setUsdAmount('')
+    } else if (Number(val) <= 0) {
+      setUsdAmount('')
     } else {
       setUsdAmount(val)
     }

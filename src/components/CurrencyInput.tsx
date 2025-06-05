@@ -27,6 +27,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/[^\d]/g, '')
+    // Permitir vacío
     if (rawValue === '') {
       onChange('')
       return
@@ -89,7 +90,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
         value={value}
         onChange={handleChange}
         readOnly={readOnly}
-        className={`w-full pl-32 pr-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg text-right ${
+        className={`w-full pl-32 pr-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg  text-right ${
           readOnly
             ? 'text-zinc-400 dark:text-zinc-400'
             : 'text-zinc-900 dark:text-zinc-100'

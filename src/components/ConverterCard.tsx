@@ -7,9 +7,9 @@ import { formatCurrency } from '../utils/currencyData'
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 const ConverterCard: React.FC = () => {
-  const [fromCurrency, setFromCurrency] = useState<'CLP' | 'USD' | 'ARS'>('CLP')
-  const [toCurrency, setToCurrency] = useState<'CLP' | 'USD' | 'ARS'>('USD')
-  const [amount, setAmount] = useState('1.000')
+  const [fromCurrency, setFromCurrency] = useState<'CLP' | 'USD' | 'ARS'>('USD')
+  const [toCurrency, setToCurrency] = useState<'CLP' | 'USD' | 'ARS'>('ARS')
+  const [amount, setAmount] = useState('1')
 
   const { data: rates, error } = useSWR(
     'https://api.exchangerate-api.com/v4/latest/USD',
@@ -23,12 +23,14 @@ const ConverterCard: React.FC = () => {
     return to === 'USD' ? usdValue : usdValue * rates.rates[to]
   }
 
-  // Solo permitir valores mayores a 0
+  // Solo permitir valores mayores a 0 o vacío
   const handleAmountChange = (val: string) => {
     // Eliminar puntos y convertir a número
     const num = parseFloat(val.replace(/\./g, '').replace(',', '.'))
-    if (isNaN(num) || num <= 0) {
-      setAmount('1')
+    if (val === '') {
+      setAmount('')
+    } else if (isNaN(num) || num <= 0) {
+      setAmount('')
     } else {
       setAmount(val)
     }
@@ -36,7 +38,7 @@ const ConverterCard: React.FC = () => {
 
   const handleSwap = () => {
     const fromAmount =
-      parseFloat(amount.replace(/\./g, '').replace(',', '.')) || 1
+      parseFloat(amount.replace(/\./g, '').replace(',', '.')) || 0
     const convertedAmount = convert(fromAmount, fromCurrency, toCurrency)
 
     setFromCurrency(toCurrency)
@@ -46,7 +48,7 @@ const ConverterCard: React.FC = () => {
 
   const convertedAmount = rates
     ? convert(
-        parseFloat(amount.replace(/\./g, '').replace(',', '.')) || 1,
+        parseFloat(amount.replace(/\./g, '').replace(',', '.')) || 0,
         fromCurrency,
         toCurrency
       )
@@ -66,7 +68,7 @@ const ConverterCard: React.FC = () => {
     )
 
   return (
-    <div className='w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-700 p-8'>
+    <div className='w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-700 p-4 md:p-8'>
       <div className='space-y-6'>
         <CurrencyInput
           value={amount}
@@ -75,7 +77,7 @@ const ConverterCard: React.FC = () => {
           onCurrencyChange={setFromCurrency}
           otherCurrency={toCurrency}
           // Mejorar el estilo del input desde aquí
-          inputClassName='!bg-zinc-50 !bg-gray-100 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-2xl !font-semibold !py-4 !pl-36  !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
+          inputClassName='!bg-zinc-50 !bg-gray-100 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-xl !font-semibold !py-4 !pl-36  !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
         />
 
         <div className='flex justify-center'>
@@ -95,16 +97,8 @@ const ConverterCard: React.FC = () => {
           onCurrencyChange={setToCurrency}
           otherCurrency={fromCurrency}
           readOnly
-          inputClassName='!bg-zinc-50 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-2xl !font-semibold !py-4 !pl-36 !pr-6'
+          inputClassName='!bg-zinc-50 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-xl !font-semibold !py-4 !pl-36 !pr-6'
         />
-      </div>
-
-      <div className='mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700'>
-        <p className='text-sm text-zinc-500 dark:text-zinc-400'>
-          1 {fromCurrency} ={' '}
-          {formatCurrency(convert(1, fromCurrency, toCurrency), toCurrency)}{' '}
-          {toCurrency}
-        </p>
       </div>
     </div>
   )

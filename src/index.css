@@ -17,7 +17,7 @@
   }
 
   .app.light {
-    background: #fff;
-    color: #181818;
+    background: #fff0f6; /* soft pink background */
+    color: #831843; /* deep pink text */
   }
 }
