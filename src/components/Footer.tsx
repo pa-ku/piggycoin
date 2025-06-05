@@ -59,8 +59,8 @@ export default function Footer() {
 
   return (
     <footer className='w-full  mt-12 flex flex-col items-center gap-2 py-6'>
-      <div className='flex items-center gap-2 flex-col text-zinc-200 '>
-        <span className=' text-black dark:text-zinc-300 font-bold text-lg'>
+      <div className='flex items-center gap-3 flex-col text-zinc-200 '>
+        <span className=' text-black dark:text-zinc-300 font-bold text-2xl uppercase '>
           Dólar Oficial
         </span>
         <div className='flex items-center gap-2 mt-2'>
@@ -95,14 +95,14 @@ export default function Footer() {
           <span className='text-black dark:text-zinc-500'>Cargando...</span>
         ) : (
           <span className='font-semibold text-white flex gap-4'>
-            <span>
-              Compra{' '}
+            <span className='flex-col flex text-center dark:text-zinc-400'>
+              Compra
               <span className='text-black dark:text-zinc-300'>
                 ${compraTotal}
               </span>
             </span>
-            <span>
-              Venta{' '}
+            <span className='flex-col text-center flex dark:text-zinc-400'>
+              Venta
               <span className='text-black dark:text-zinc-300'>
                 ${ventaTotal}
               </span>
@@ -111,8 +111,8 @@ export default function Footer() {
         )}
       </div>
       {promedio && (
-        <div className=' text-black dark:text-zinc-400 mt-1'>
-          Promedio:{' '}
+        <div className=' text-black dark:text-zinc-400 font-bold mt-1 flex text-center flex-col'>
+          Promedio
           <span className='font-semibold text-black dark:text-white'>
             ${promedioTotal}
           </span>
