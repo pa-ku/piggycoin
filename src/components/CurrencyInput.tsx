@@ -7,12 +7,13 @@ interface CurrencyInputProps {
   onCurrencyChange: (currency: 'CLP' | 'USD' | 'ARS') => void
   otherCurrency: 'CLP' | 'USD' | 'ARS'
   readOnly?: boolean
+  inputClassName?: string // nueva prop para estilos personalizados
 }
 
 const currencies = {
-  CLP: { name: 'Chilean Peso', symbol: '$' },
   USD: { name: 'US Dollar', symbol: '$' },
   ARS: { name: 'Argentine Peso', symbol: '$' },
+  CLP: { name: 'Chilean Peso', symbol: '$' },
 }
 
 const CurrencyInput: React.FC<CurrencyInputProps> = ({
@@ -22,6 +23,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
   onCurrencyChange,
   otherCurrency,
   readOnly = false,
+  inputClassName = '',
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/[^\d]/g, '')
@@ -41,8 +43,10 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
         {Object.entries(currencies).map(([code, { name }]) => (
           <label
             key={code}
-            className={`flex items-center space-x-1 cursor-pointer justify-center select-none ${
-              code === otherCurrency ? 'opacity-50 cursor-not-allowed' : ''
+            className={`flex items-center space-x-1 cursor-pointer duration-200 justify-center select-none ${
+              code === otherCurrency
+                ? 'duration-200 opacity-30 scale-90 cursor-not-allowed'
+                : ''
             }`}
           >
             <input
@@ -56,7 +60,8 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
             />
             <span
               className={`
-                w-4 h-4 rounded-full border-2 
+                w-4 h-4 rounded-full border-2
+                duration-300 
                 border-zinc-400 dark:border-zinc-500 
                 flex items-center justify-center
                 transition-colors
@@ -86,9 +91,9 @@ const CurrencyInput: React.FC<CurrencyInputProps> = ({
         readOnly={readOnly}
         className={`w-full pl-32 pr-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg text-right ${
           readOnly
-            ? 'text-zinc-400 dark:text-zinc-500'
+            ? 'text-zinc-400 dark:text-zinc-400'
             : 'text-zinc-900 dark:text-zinc-100'
-        } focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-700 transition-shadow`}
+        } focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-700 transition-shadow ${inputClassName}`}
         placeholder='0,00'
       />
     </div>

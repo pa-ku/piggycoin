@@ -1,4 +1,5 @@
 import useSWR from 'swr'
+import React, { useState } from 'react'
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -9,9 +10,24 @@ export default function Footer() {
     { refreshInterval: 60000 }
   )
 
+  const [usdAmount, setUsdAmount] = useState('1')
+
+  // Solo permitir valores mayores a 0
+  const handleUsdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value
+    if (val === '' || Number(val) <= 0) {
+      setUsdAmount('1')
+    } else {
+      setUsdAmount(val)
+    }
+  }
+
   let compra = ''
   let venta = ''
   let promedio = ''
+  let compraTotal = ''
+  let ventaTotal = ''
+  let promedioTotal = ''
   if (data && data.oficial) {
     const compraNum = Number(data.oficial.value_buy)
     const ventaNum = Number(data.oficial.value_sell)
@@ -20,6 +36,16 @@ export default function Footer() {
     if (!isNaN(compraNum) && !isNaN(ventaNum)) {
       const avg = (compraNum + ventaNum) / 2
       promedio = avg.toLocaleString('es-AR', { minimumFractionDigits: 2 })
+      const amount = parseFloat(usdAmount) || 0
+      compraTotal = (compraNum * amount).toLocaleString('es-AR', {
+        minimumFractionDigits: 2,
+      })
+      ventaTotal = (ventaNum * amount).toLocaleString('es-AR', {
+        minimumFractionDigits: 2,
+      })
+      promedioTotal = (avg * amount).toLocaleString('es-AR', {
+        minimumFractionDigits: 2,
+      })
     }
   }
 
@@ -27,6 +53,27 @@ export default function Footer() {
     <footer className='w-full mt-12 flex flex-col items-center gap-2 py-6'>
       <div className='flex items-center gap-2 flex-col text-zinc-200 '>
         <span className='text-zinc-300 font-bold text-lg'>Dólar Oficial</span>
+        <div className='flex items-center gap-2 mt-2'>
+          <label htmlFor='usd-amount' className='text-zinc-400 text-sm'>
+            USD:
+          </label>
+          <input
+            id='usd-amount'
+            type='number'
+            min='1'
+            step='any'
+            value={usdAmount}
+            onChange={handleUsdChange}
+            className='w-20 px-3 py-2 rounded-md bg-zinc-900 text-zinc-100 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 text-right transition-all placeholder-zinc-400'
+            style={{
+              fontSize: '1.1rem',
+              fontWeight: 500,
+              appearance: 'textfield',
+            }}
+            inputMode='decimal'
+            pattern='[0-9]*'
+          />
+        </div>
         {error ? (
           <span className='text-zinc-400'>
             No se pudo obtener el valor actual
@@ -36,10 +83,10 @@ export default function Footer() {
         ) : (
           <span className='font-semibold text-white flex gap-4'>
             <span>
-              Compra <span className='text-zinc-300'>${compra}</span>
+              Compra <span className='text-zinc-300'>${compraTotal}</span>
             </span>
             <span>
-              Venta <span className='text-zinc-300'>${venta}</span>
+              Venta <span className='text-zinc-300'>${ventaTotal}</span>
             </span>
           </span>
         )}
@@ -47,7 +94,7 @@ export default function Footer() {
       {promedio && (
         <div className=' text-zinc-400 mt-1'>
           Promedio:{' '}
-          <span className='font-semibold text-white'>${promedio}</span>
+          <span className='font-semibold text-white'>${promedioTotal}</span>
         </div>
       )}
     </footer>

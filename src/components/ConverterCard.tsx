@@ -23,8 +23,20 @@ const ConverterCard: React.FC = () => {
     return to === 'USD' ? usdValue : usdValue * rates.rates[to]
   }
 
+  // Solo permitir valores mayores a 0
+  const handleAmountChange = (val: string) => {
+    // Eliminar puntos y convertir a número
+    const num = parseFloat(val.replace(/\./g, '').replace(',', '.'))
+    if (isNaN(num) || num <= 0) {
+      setAmount('1')
+    } else {
+      setAmount(val)
+    }
+  }
+
   const handleSwap = () => {
-    const fromAmount = parseFloat(amount.replace(/\./g, '')) || 0
+    const fromAmount =
+      parseFloat(amount.replace(/\./g, '').replace(',', '.')) || 1
     const convertedAmount = convert(fromAmount, fromCurrency, toCurrency)
 
     setFromCurrency(toCurrency)
@@ -34,7 +46,7 @@ const ConverterCard: React.FC = () => {
 
   const convertedAmount = rates
     ? convert(
-        parseFloat(amount.replace(/\./g, '')) || 0,
+        parseFloat(amount.replace(/\./g, '').replace(',', '.')) || 1,
         fromCurrency,
         toCurrency
       )
@@ -54,23 +66,25 @@ const ConverterCard: React.FC = () => {
     )
 
   return (
-    <div className='w-full max-w-md bg-white dark:bg-zinc-800 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-700 p-6'>
-      <div className='space-y-4'>
+    <div className='w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-700 p-8'>
+      <div className='space-y-6'>
         <CurrencyInput
           value={amount}
-          onChange={setAmount}
+          onChange={handleAmountChange}
           currency={fromCurrency}
           onCurrencyChange={setFromCurrency}
           otherCurrency={toCurrency}
+          // Mejorar el estilo del input desde aquí
+          inputClassName='!bg-zinc-50 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-2xl !font-semibold !py-4 !pl-36 !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
         />
 
         <div className='flex justify-center'>
           <button
             onClick={handleSwap}
-            className='p-2 hover:bg-zinc-50 rounded-full transition-colors'
+            className='p-2 hover:bg-primary-50 dark:hover:bg-zinc-700 rounded-full transition-colors   dark:border-zinc-600 shadow-sm'
             aria-label='Swap currencies'
           >
-            <ArrowUpDown className='h-5 w-5 text-zinc-400' />
+            <ArrowUpDown className='h-5 w-5 ' />
           </button>
         </div>
 
@@ -81,10 +95,11 @@ const ConverterCard: React.FC = () => {
           onCurrencyChange={setToCurrency}
           otherCurrency={fromCurrency}
           readOnly
+          inputClassName='!bg-zinc-50 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-2xl !font-semibold !py-4 !pl-36 !pr-6'
         />
       </div>
 
-      <div className='mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-700'>
+      <div className='mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-700'>
         <p className='text-sm text-zinc-500 dark:text-zinc-400'>
           1 {fromCurrency} ={' '}
           {formatCurrency(convert(1, fromCurrency, toCurrency), toCurrency)}{' '}
