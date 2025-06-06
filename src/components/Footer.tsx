@@ -58,11 +58,11 @@ export default function Footer() {
   }
 
   return (
-    <footer className='w-full  mt-12 flex flex-col items-center gap-2 py-6'>
-      <div className='flex items-center gap-3 flex-col text-zinc-200 '>
-        <span className=' text-black dark:text-zinc-300 font-bold text-2xl uppercase '>
-          Dólar Oficial
-        </span>
+    <footer className='relative w-full  mt-12 flex flex-col items-center gap-2 py-6'>
+      <span className='text-black dark:from-zinc-900  dark:to-zinc-700 text-transparent bg-clip-text bg-gradient-to-tr  pointer-events-none font-bold text-5xl   uppercase '>
+        Dólar Oficial
+      </span>
+      <div className='flex items-center gap-3 flex-col text-zinc-200 z-10 '>
         <div className='flex items-center gap-2 mt-2'>
           <label
             htmlFor='usd-amount'
@@ -94,7 +94,7 @@ export default function Footer() {
         ) : !compra || !venta ? (
           <span className='text-black dark:text-zinc-500'>Cargando...</span>
         ) : (
-          <span className='font-semibold text-white flex gap-4'>
+          <span className=' font-semibold text-white flex gap-4'>
             <span className='flex-col flex text-center dark:text-zinc-400'>
               Compra
               <span className='text-black dark:text-zinc-300'>
