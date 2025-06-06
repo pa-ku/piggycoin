@@ -59,7 +59,7 @@ export default function Footer() {
 
   return (
     <footer className='relative w-full   flex flex-col items-center gap-5 py-6'>
-      <span className='text-black from-zinc-400 dark:from-zinc-900  to-zinc-600 dark:to-zinc-600 text-transparent bg-clip-text bg-gradient-to-tr  pointer-events-none font-bold text-5xl   uppercase '>
+      <span className='text-black from-zinc-400 dark:from-zinc-900  to-zinc-600 dark:to-zinc-600 text-transparent bg-clip-text bg-gradient-to-tr  pointer-events-none font-bold text-5xl    '>
         Dólar Oficial
       </span>
       <div className='flex items-center gap-3 flex-col text-zinc-200 z-10 '>
