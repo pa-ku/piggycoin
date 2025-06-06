@@ -69,7 +69,7 @@ const ConverterCard: React.FC = () => {
 
   return (
     <div className='w-full max-w-md bg-white dark:bg-zinc-800 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-700 p-4 md:p-8'>
-      <div className='space-y-6'>
+      <div className='space-y-5'>
         <CurrencyInput
           value={amount}
           onChange={handleAmountChange}
@@ -77,7 +77,7 @@ const ConverterCard: React.FC = () => {
           onCurrencyChange={setFromCurrency}
           otherCurrency={toCurrency}
           // Mejorar el estilo del input desde aquí
-          inputClassName='!bg-zinc-50 !bg-gray-100 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-xl !font-semibold !py-4 !pl-36  !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
+          inputClassName='!bg-zinc-100 !bg-gray-100 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-xl !font-semibold !py-4 !pl-36  !pr-6 focus:!ring-2 focus:!ring-gray-400 transition-all'
         />
 
         <div className='flex justify-center'>
@@ -97,7 +97,7 @@ const ConverterCard: React.FC = () => {
           onCurrencyChange={setToCurrency}
           otherCurrency={fromCurrency}
           readOnly
-          inputClassName='!bg-zinc-50 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-xl !font-semibold !py-4 !pl-36 !pr-6'
+          inputClassName='!bg-zinc-100 dark:!bg-zinc-900 !border-none !shadow-none !rounded-xl !text-xl !font-semibold !py-4 !pl-36 !pr-6'
         />
       </div>
     </div>

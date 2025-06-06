@@ -13,11 +13,11 @@ function App() {
   }
 
   return (
-    <div className={`app ${theme}`}>
-      <div className='min-h-screen bg-zinc-50 dark:bg-zinc-900 flex flex-col items-center justify-center p-4 text-zinc-900 dark:text-zinc-100'>
-        <div className='flex items-center gap-2 mb-8 flex-col'>
+    <div className={`animate-fade-in app ${theme}`}>
+      <div className='min-h-screen bg-zinc-100 dark:bg-zinc-900 flex flex-col items-center justify-center p-4 gap-8 text-zinc-900 dark:text-zinc-100'>
+        <div className='flex items-center gap-2 flex-col'>
           <img
-            className='size-20 invert dark:invert-0 hover:scale-105 duration-300 cursor-pointer'
+            className='size-24 invert dark:invert-0 hover:scale-105 duration-300 cursor-pointer'
             src={logo}
             alt=''
             onClick={toggleTheme}

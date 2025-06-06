@@ -58,8 +58,8 @@ export default function Footer() {
   }
 
   return (
-    <footer className='relative w-full  mt-12 flex flex-col items-center gap-2 py-6'>
-      <span className='text-black dark:from-zinc-900  dark:to-zinc-700 text-transparent bg-clip-text bg-gradient-to-tr  pointer-events-none font-bold text-5xl   uppercase '>
+    <footer className='relative w-full   flex flex-col items-center gap-5 py-6'>
+      <span className='text-black from-zinc-400 dark:from-zinc-900  to-zinc-600 dark:to-zinc-600 text-transparent bg-clip-text bg-gradient-to-tr  pointer-events-none font-bold text-5xl   uppercase '>
         Dólar Oficial
       </span>
       <div className='flex items-center gap-3 flex-col text-zinc-200 z-10 '>
@@ -77,7 +77,7 @@ export default function Footer() {
             step='any'
             value={usdAmount}
             onChange={handleUsdChange}
-            className='w-20 px-3 py-2 rounded-md  bg-zinc-900 text-zinc-100 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 text-right transition-all placeholder-zinc-400'
+            className='w-20 px-3 py-2 rounded-md  bg-zinc-300 text-black dark:bg-zinc-900 dark:text-zinc-100 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-400 text-right transition-all placeholder-zinc-400'
             style={{
               fontSize: '1.1rem',
               fontWeight: 500,
@@ -95,13 +95,13 @@ export default function Footer() {
           <span className='text-black dark:text-zinc-500'>Cargando...</span>
         ) : (
           <span className=' font-semibold text-white flex gap-4'>
-            <span className='flex-col flex text-center dark:text-zinc-400'>
+            <span className='flex-col flex text-center text-black dark:text-zinc-400'>
               Compra
               <span className='text-black dark:text-zinc-300'>
                 ${compraTotal}
               </span>
             </span>
-            <span className='flex-col text-center flex dark:text-zinc-400'>
+            <span className='flex-col text-center flex dark:text-zinc-400 text-black'>
               Venta
               <span className='text-black dark:text-zinc-300'>
                 ${ventaTotal}

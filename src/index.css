@@ -8,18 +8,11 @@
   }
 
   body {
-    @apply text-zinc-900 bg-zinc-50 dark:text-zinc-100 dark:bg-zinc-900;
+    @apply text-zinc-900 bg-zinc-300 dark:text-zinc-100 dark:bg-zinc-900;
   }
 
-  .app.dark {
-    background: #181818;
-    color: #fff;
-  }
 
-  .app.light {
-    background: #fff0f6; /* soft pink background */
-    color: #831843; /* deep pink text */
-  }
+
 }
 
 /* SELECTION */
@@ -39,4 +32,19 @@ border: 3.2px solid #333;
 }
 ::-webkit-scrollbar-thumb:hover {
 background-color: #777;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+  
 }
